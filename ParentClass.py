@@ -9,9 +9,20 @@ class ParentClass:
 
     # - Include at least two instance variables.
     # - Include a constructor (__init__).
-    def __init__(self, mom_name: str, dad_name:str):
-        self.mom_name = mom_name
-        self.dad_name = dad_name
+    #def __init__(self, mom_name: str, dad_name:str):
+     #   self.mom_name = mom_name
+      #  self.dad_name = dad_name
+
+    def __init__(self, mom_name: str, dad_name: str):
+
+        if not isinstance(mom_name, str) or not mom_name.strip():
+            raise ValueError("Mom's name must be a non-empty string.")
+
+        if not isinstance(dad_name, str) or not dad_name.strip():
+            raise ValueError("Dad's name must be a non-empty string.")
+
+        self.mom_name = mom_name.strip()
+        self.dad_name = dad_name.strip()
 
 # - Include a method that returns or displays information about the object.
     def display_info(self):
@@ -30,8 +41,10 @@ class ChildClass(ParentClass):
 
     def __init__(self, mom_name, dad_name, child_name: str, child_rank: str):
         super().__init__(mom_name, dad_name)
+        if not isinstance(child_name, str) or not child_name.strip():
+            raise ValueError("Child's name must be a non-empty string.")
         # - Add at least two new instance variables.
-        self.child_name = child_name
+        self.child_name = child_name.strip()
         self.child_rank = child_rank
 
     # - Add at least one new method.
@@ -125,7 +138,7 @@ def main():
 
     print("\nTODO: Create and test your parent object")
 
-    parent1 = ParentClass("Maria", "Jaime")
+    parent1 = ParentClass("Maria", "None")
     parent1.display_info()
 
     print()
